@@ -11,7 +11,17 @@ warnings.filterwarnings('ignore')
 # display all columns
 pd.set_option('display.max_columns', None)
 
-file_path = os.path.join(os.path.dirname(__file__),'../data/BAJFINANCE.csv')
+def get_valid_file_path():
+    while True:
+        file_path = input("Please enter the path to the CSV file: ")
+        if os.path.isfile(file_path) and file_path.endswith('.csv'):
+            return file_path
+        else:
+            print("Invalid file path or file is not a CSV. Please try again.")
+
+# file_path = os.path.join(os.path.dirname(__file__),'../data/BAJFINANCE.csv')
+
+file_path = get_valid_file_path()
 
 stock_info = pd.read_csv(file_path)
 stock_info.head()
